@@ -1,1 +1,1 @@
-goit-fs78-react-hw-05-movies
+goit-fs78-react-hw-06-phonebook
