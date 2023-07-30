@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 
 import { Container } from './App.styled';
 import { ContactForm } from '../ContactForm/ContactForm';
@@ -26,8 +26,11 @@ import { setFilterContacts } from 'redux/filterSlice';
 export const App = () => {
   // const [contacts, setContacts] = useState(initContacts);
   // const [filter, setFilter] = useState('');
-  const contacts = useSelector(getContacts);
+  const { contacts } = useSelector(getContacts);
   const filter = useSelector(getFilter);
+
+  console.log(contacts);
+  console.log('isArray', Array.isArray(contacts));
 
   const dispatch = useDispatch();
 
@@ -44,17 +47,17 @@ export const App = () => {
     dispatch(addContact({ name, number }));
   };
 
+  const handleDeleteContact = id => {
+    // const restContacts = contacts.filter(contact => contact.id !== id);
+    // setContacts(restContacts);
+    dispatch(deleteContact(id));
+  };
+
   const filterContacts = () => {
     const normalizedFilter = filter.toLowerCase();
     return contacts.filter(({ name }) =>
       name.toLowerCase().includes(normalizedFilter)
     );
-  };
-
-  const handleDeleteContact = id => {
-    // const restContacts = contacts.filter(contact => contact.id !== id);
-    // setContacts(restContacts);
-    dispatch(deleteContact(id));
   };
 
   // useEffect(() => {
